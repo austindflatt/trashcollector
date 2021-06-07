@@ -27,4 +27,4 @@ def create(request):
         new_customer.save()
         return HttpResponseRedirect(reverse('customers:index'))
     else:
-        return render(request, 'customers/register.html')
+        return render(request, 'customers/registerregister.html')
