@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="{% url 'customers:create_new_customer' %}" method="POST">
+    <form action="{% url 'customers:register_new_customer' %}" method="POST">
         {% csrf_token %}
         Name:<input type="text" name="name" id="name"><br>
         Address:<input type="text" name="address" id="address"><br>
