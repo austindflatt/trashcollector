@@ -1,5 +1,5 @@
 from django.db import models
-from ..customers.models import Customer
+# from ..customers.models import Customer
 # Create your models here.
 
 
@@ -7,4 +7,4 @@ from ..customers.models import Customer
 class Employees(models.Model):
     name = models.CharField(max_length=50)
     zipcode = models.CharField(max_length=5)
-    user = models.ForeignKey(to_field=Customer.user)
+    # user = models.ForeignKey(to_field=Customer.user)
