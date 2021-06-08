@@ -8,6 +8,10 @@
     <title>One-time pickup</title>
 </head>
 <body>
-
+    <label for="one_time_pickup">Please enter what date you would like for a one-time pickup:</label>
+    <input type="date" id="one_time_pickup" name="one_time_pickup"
+            value="2021-06-07"
+            min="2021-06-06" max="2022-06-06">
+    <a href="{% url 'customers:one_time' ">Submit</a>
 </body>
 </html>

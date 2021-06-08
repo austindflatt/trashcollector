@@ -9,4 +9,6 @@ urlpatterns = [
     path('', views.index, name="index"),
     path('new/', views.create, name='register_new_customer'),
     path('account_details/', views.account_details, name='account_details'),
+    path('one_time_pickup/', views.one_time_pickup, name='one_time'),
+    path('pickup_suspension/', views.submit_suspension, name='suspension')
 ]
