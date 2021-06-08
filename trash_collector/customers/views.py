@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse
 from django.shortcuts import render
+from django.urls import reverse
 from .models import Customer
 # Create your views here.
 
@@ -27,4 +27,13 @@ def create(request):
         new_customer.save()
         return HttpResponseRedirect(reverse('customers:index'))
     else:
-        return render(request, 'customers/registerregister.html')
+        return render(request, 'customers/register.html')
+
+
+def account_details(request):
+    user = request.user
+    customer = Customer.objects.get(user=user)
+    context = {
+        "customer": customer
+    }
+    return render(request, 'customers/account_details.html', context)
