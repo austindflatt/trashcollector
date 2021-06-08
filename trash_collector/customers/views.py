@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse
 from django.shortcuts import render
+from django.urls import reverse
 from .models import Customer
 # Create your views here.
 
@@ -60,4 +60,3 @@ def submit_suspension(request):
         return HttpResponseRedirect(reverse('customers:index.html'))
     else:
         return render(request, 'customers/suspension.html')
-
