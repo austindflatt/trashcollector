@@ -11,8 +11,8 @@
     <label>Please enter a stop and start date for your pickup service:</label>
     <form name="suspension_form" action="{% url 'customers:suspension' %}" method="POST">
         {% csrf_token %}
-        Stop date:<input type="text" name="stop_date" id="stop_date"><br>
-        Start date:<input type="text" name="start_date" id="start_date"><br>
+        Stop date:<input type="date" name="stop_date" id="stop_date" value="2021-06-07" min="2021-06-06" max="2021-12-31"><br>
+        Start date:<input type="date" name="start_date" id="start_date" value="2021-06-07" min="2021-06-06" max="2021-12-31"><br>
         <a href="{% url 'customers:suspension' ">Submit</a>
     </form>
 </body>
