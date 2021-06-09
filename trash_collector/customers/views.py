@@ -39,24 +39,44 @@ def create(request):
         return render(request, 'customers/register.html')
 
 
-# Allows customer to request a one time pickup
-def one_time_pickup(request):
+def change_pickup_day(request):
+    customer = Customer.objects.get(user=request.user)
     if request.method == "POST":
-        pickup_day = request.POST.get('pickup_day')
-        temp_pickup = Customer(pickup_day=pickup_day)
-        temp_pickup.save()
+        customer.pickup_day = request.POST.get('pickup_day')
+        customer.save()
         return HttpResponseRedirect(reverse('customers:index'))
     else:
-        return render(request, 'customers/one_time.html')
+        context = {
+            'customer': customer
+        }
+        return render(request, 'customers/change_pickup_day.html', context)
+
+
+# Allows customer to request a one time pickup
+def one_time(request):
+    customer = Customer.objects.get(user=request.user)
+    if request.method == "POST":
+        date_from_form = request.POST.get('one_time')
+        customer.onetime_pickup = date_from_form
+        customer.save()
+        return HttpResponseRedirect(reverse('customers:index'))
+    else:
+        context = {
+            'customer': customer
+        }
+        return render(request, 'customers/one_time.html', context)
 
 
 # Allows customers to request a temporary stop in service and to request a service continuation start date
 def submit_suspension(request):
+    customer = Customer.objects.get(user=request.user)
     if request.method == "POST":
-        suspension_stop = request.POST.get('suspension_stop')
-        suspension_start = request.POST.get('suspension_start')
-        temp_stop = Customer(suspension_stop=suspension_stop, suspension_start=suspension_start)
-        temp_stop.save()
+        customer.suspension_end = request.POST.get('suspension_end')
+        customer.suspension_start = request.POST.get('suspension_start')
+        customer.save()
         return HttpResponseRedirect(reverse('customers:index.html'))
     else:
-        return render(request, 'customers/suspension.html')
+        context = {
+            'customer': customer
+        }
+        return render(request, 'customers/suspension.html', context)

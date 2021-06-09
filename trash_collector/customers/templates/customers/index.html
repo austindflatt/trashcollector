@@ -9,11 +9,16 @@
   {% if user.is_authenticated %}
     Hello Customer {{ user.username }}!<br>
     <br>
-    <a href="{% url 'customers:one_time' %}">Request One-Time Pickup</a><br>
-    <a href="{% url 'customers:suspension' %}">Request Pickup Suspension</a>
+    <div> Your scheduled pickup day is: {{ customer.pickup_day }}</div>
+    <div> Your balance is: {{ customer.balance }}</div><br>
+    <br>
+    <a href="{% url 'customers:change_pickup_day' %}">Change Your Pickup Day</a><br><br>
+    <a href="{% url 'customers:one_time' %}">Request One-time Pickup</a><br><br>
+    <a href="{% url 'customers:suspension' %}">Request Pickup Suspension</a><br>
   {% else %}
     <p>You are at the customer index, but you are not logged in.</p>
     <a href="{% url 'login' %}">Log In</a>
     <a href="{% url 'accounts:register' %}">Sign Up</a>
   {% endif %}
+
 {% endblock %}
