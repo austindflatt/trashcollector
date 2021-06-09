@@ -47,7 +47,6 @@ def account_details(request):
     }
     return render(request, 'customers/account_details.html', context)
 
-
 # Allows customer to request a one time pickup
 def one_time_pickup(request):
     if request.method == "POST":
