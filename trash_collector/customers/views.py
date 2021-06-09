@@ -54,7 +54,6 @@ def change_pickup_day(request):
         }
         return render(request, 'customers/change_pickup_day.html', context)
 
-
 # Allows customer to request a one time pickup
 def one_time(request):
     customer = Customer.objects.get(user=request.user)
