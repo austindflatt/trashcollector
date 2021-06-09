@@ -23,6 +23,7 @@ def index(request):
     return render(request, 'customers/index.html', context)
 
 
+# Registers a user's info
 def create(request):
     if request.method == 'POST':
         user = request.user
@@ -39,10 +40,12 @@ def create(request):
         return render(request, 'customers/register.html')
 
 
+# Allows user to change their current trash pickup day
 def change_pickup_day(request):
     customer = Customer.objects.get(user=request.user)
     if request.method == "POST":
-        customer.pickup_day = request.POST.get('pickup_day')
+        new_pickup_day = request.POST.get('change_pickup_day')
+        customer.pickup_day = new_pickup_day
         customer.save()
         return HttpResponseRedirect(reverse('customers:index'))
     else:
@@ -71,10 +74,10 @@ def one_time(request):
 def submit_suspension(request):
     customer = Customer.objects.get(user=request.user)
     if request.method == "POST":
-        customer.suspension_end = request.POST.get('suspension_end')
         customer.suspension_start = request.POST.get('suspension_start')
+        customer.suspension_end = request.POST.get('suspension_end')
         customer.save()
-        return HttpResponseRedirect(reverse('customers:index.html'))
+        return HttpResponseRedirect(reverse('customers:index'))
     else:
         context = {
             'customer': customer
