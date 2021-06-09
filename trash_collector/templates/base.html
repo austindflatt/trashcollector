@@ -9,7 +9,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'logout' %}">Trash Collector</a>
+    <a class="navbar-brand" href="{% url 'home' %}">Trash Collector</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -24,10 +24,29 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Balance</a>
         </li>
+        {% if user.is_authenticated %}
+          {% for group in user.groups.all%}
+            {% if group.name == "Customers" %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'customers:account_details' %}">Account Details</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Change Pickup</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Suspend Account</a>
+        </li>
+        {% elif group.name == "Employees" %}
+        <li class="nav-item">
+          <a class="nav-link" href="#">Daily View</a>
+        </li>
+        {% endif %}
       </ul>
+      {% endfor %}
       <span class="navbar-text">
-        Welcome to your trash service
+        Welcome {{ user.username }}
       </span>
+      {% endif %}
     </div>
   </div>
 </nav>
