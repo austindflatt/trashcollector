@@ -7,8 +7,8 @@
 {% block content %}
 <form action="{% url 'customers:change_pickup_day' %}" method="post">
         {% csrf_token %}
-        <label>Please select a new pickup day:</label>
-        <select name="change_pickup_day">
+        <label for="change_pickup_day">Please select a new pickup day:</label>
+        <select name="change_pickup_day" id="change_pickup_day">
             <option value="Sunday">Sunday</option>
             <option value="Monday">Monday</option>
             <option value="Tuesday">Tuesday</option>
