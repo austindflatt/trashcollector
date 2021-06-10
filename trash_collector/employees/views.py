@@ -11,7 +11,7 @@ from django.db.models import Q
 
 def index(request):
     # This line will get the Customer model from the other app, it can now be used to query the db
-    customers = apps.get_model('customers.Customer')
+    Customers = apps.get_model('customers.Customer')
     user = request.user
     try:
         logged_in_employee = Employees.objects.get(user=user)
@@ -25,7 +25,7 @@ def index(request):
 
 # Registers an employee's info
 def create(request):
-    if request == "POST":
+    if request.method == "POST":
         print('Triggered POST')
         user = request.user
         name = request.POST.get('name')
