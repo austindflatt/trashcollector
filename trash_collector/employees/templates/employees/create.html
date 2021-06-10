@@ -5,3 +5,13 @@
 {% block header %} Create Employee {% endblock %}
 
 {% block content %}
+
+<form action="{% url 'employees:create' %}" method="post">
+    {% csrf_token %}
+    <label>Please complete the following fields:</label><br>
+    Name: <input type="text" name="name" id="name"><br>
+    Zip Code: <input type="text" name="zipcode" id="zipcode"><br>
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}
