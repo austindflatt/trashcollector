@@ -16,7 +16,14 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'customers:change_pickup_day' %}">Change Pickups</a>
+        {% if user.is_authenticated %}
+          {% for group in user.groups.all%}
+            {% if group.name == "Customers" %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'customers:account_details' %}">Account Details</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'customers:change_pickup_day' %}">Change Pickup</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'customers:one_time' %}">Set One-Time Pickup</a>
@@ -27,10 +34,20 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
         </li>
+        {% elif group.name == "Employees" %}
+        <li class="nav-item">
+          <a class="nav-link" href="#">Daily View</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+        </li>
+        {% endif %}
       </ul>
+      {% endfor %}
       <span class="navbar-text">
         Welcome {{ user.username }}
       </span>
+      {% endif %}
     </div>
   </div>
 </nav>

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} Account Details {% endblock %}
+
+{% block header %} Account Details {% endblock %}
+
+{% block content %}
+
+    <p><b>First Name:</b> {{customer.fname}}</p>
+    <p><b>Last Name:</b> {{customer.lname}}</p>
+    <p><b>Pickup Day:</b> {{customer.pickup_day}}</p>
+    <p><b>Address:</b> {{customer.address}}</p>
+    <p><b>Zip code:</b> {{customer.zip_code}}</p>
+    <p><b>Account Balance:</b> {{customer.balance}}</p>
+    <p><b>One time Pickup:</b> {{customer.onetime_pickup}}</p>
+    <p><b>Suspension Start:</b> {{customer.suspension_start}}</p>
+    <p><b>Suspension End:</b> {{customer.suspension_end}}</p>
+
+{% endblock %}
