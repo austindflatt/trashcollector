@@ -9,24 +9,27 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'logout' %}">Trash Collector</a>
+    <a class="navbar-brand" href="{% url 'home' %}">Trash Collector</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="customers:index">Portal</a>
+          <a class="nav-link" href="{% url 'customers:change_pickup_day' %}">Change Pickups</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Pickups</a>
+          <a class="nav-link" href="{% url 'customers:one_time' %}">Set One-Time Pickup</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Balance</a>
+          <a class="nav-link" href="{% url 'customers:suspension' %}">Suspend Account</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
         </li>
       </ul>
       <span class="navbar-text">
-        Welcome to your trash service
+        Welcome {{ user.username }}
       </span>
     </div>
   </div>
@@ -35,13 +38,11 @@
 {% if user.is_authenticated %}
   {% for group in user.groups.all%}
     {% if group.name == "Customers" %}
-    <p>Customer Navbar</p>
-<!--    Add home url path-->
+
     {% elif group.name == "Employees" %}
     <p>Employee Navbar</p>
     {% endif %}
   {% endfor %}
-  <p><a href="{% url 'logout' %}">Log Out</a></p>
 {% endif %}
   <main>
     <h1>{% block header %} {% endblock %}</h1>

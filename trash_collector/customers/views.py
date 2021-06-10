@@ -54,6 +54,7 @@ def change_pickup_day(request):
         }
         return render(request, 'customers/change_pickup_day.html', context)
 
+
 # Allows customer to request a one time pickup
 def one_time(request):
     customer = Customer.objects.get(user=request.user)
@@ -82,3 +83,12 @@ def submit_suspension(request):
             'customer': customer
         }
         return render(request, 'customers/suspension.html', context)
+
+
+def account_details(request):
+    if not request.user.groups.filter(name="Customers").exists():
+        return render(request, 'home.html')
+    user = request.user
+    customer = Customer.objects.get(user=user)
+    context = {'customer': customer}
+    return render(request, 'customers/account_details.html', context)
