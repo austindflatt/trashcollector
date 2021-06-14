@@ -5,7 +5,9 @@
 {% block header %} Suspended Service Request {% endblock %}
 
 {% block content %}
-    <label>Please enter a stop and start date for your pickup service:</label>
+    <div class="alert alert-danger" role="alert">
+        Please enter a stop and start date for your pickup service
+    </div>
     <form name="suspension_form" action="{% url 'customers:suspension' %}" method="POST">
         {% csrf_token %}
         Stop date:<input type="date" name="suspension_start" id="suspension_start" value="2021-06-07" min="2021-06-06" max="2021-12-31"><br>

@@ -37,5 +37,3 @@ def create(request):
         print('Triggered GET')
         return render(request, 'employees/create.html')
 
-    def filter(request):
-        pass

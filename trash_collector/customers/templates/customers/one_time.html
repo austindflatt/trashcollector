@@ -7,7 +7,9 @@
 {% block content %}
     <form action="{% url 'customers:one_time' %}" method="post">
         {% csrf_token %}
-        <label for="one_time">Please enter what date you would like for a one-time pickup:</label>
+        <div class="alert alert-warning" role="alert">
+            Please enter what date you would like for a one-time pickup
+        </div>
         <input type="date" id="one_time" name="one_time"
                 value="2021-06-07"
                 min="2021-06-06" max="2022-06-06">
