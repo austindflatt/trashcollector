@@ -9,11 +9,11 @@
     <form action="{% url 'customers:register' %}" method="POST">
         {% csrf_token %}
         <label>Please complete the following fields:</label><br>
-        First Name:<input type="text" name="fname" id="fname"><br>
-        Last Name:<input type="text" name="lname" id="lname"><br>
-        Address:<input type="text" name="address" id="address"><br>
-        Zip Code:<input type="text" name="zip_code" id="zip_code"><br>
-        Requested pickup day:<input type="text" name="pickup_day" id="pickup_day"><br>
+        First Name:  <input type="text" name="fname" id="fname"><br>
+        Last Name:  <input type="text" name="lname" id="lname"><br>
+        Address:  <input type="text" name="address" id="address"><br>
+        Zip Code:  <input type="text" name="zip_code" id="zip_code"><br>
+        Requested pickup day:  <input type="text" name="pickup_day" id="pickup_day"><br>
         <input type="submit" value="Register">
     </form>
 

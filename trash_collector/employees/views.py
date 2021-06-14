@@ -3,30 +3,29 @@ from django.shortcuts import render
 from django.apps import apps
 from .models import Employees
 from django.urls import reverse
-from django.db.models import Q
-# Create your views here.
+from datetime import date
 
 # TODO: Create a function for each path created in employees/urls.py. Each will need a template as well.
 
 
 def index(request):
-    # This line will get the Customer model from the other app, it can now be used to query the db
     Customers = apps.get_model('customers.Customer')
+    all_customers = Customers.objects.all()
     user = request.user
     try:
         logged_in_employee = Employees.objects.get(user=user)
-        context = {
-            'logged_in_employee': logged_in_employee
-        }
     except:
         return HttpResponseRedirect(reverse('employees:create'))
+    context = {
+        'logged_in_employee': logged_in_employee,
+        'all_customers': all_customers,
+    }
     return render(request, 'employees/index.html', context)
 
 
 # Registers an employee's info
 def create(request):
     if request.method == "POST":
-        print('Triggered POST')
         user = request.user
         name = request.POST.get('name')
         zipcode = request.POST.get('zipcode')
@@ -34,6 +33,33 @@ def create(request):
         new_employee.save()
         return HttpResponseRedirect(reverse('employees:index'))
     else:
-        print('Triggered GET')
         return render(request, 'employees/create.html')
 
+<<<<<<< HEAD
+=======
+
+def daily_view(request):
+    user = request.user
+    logged_in_employee = Employees.objects.get(user=user)
+    Customers = apps.get_model('customers.Customer')
+    all_customers = Customers.objects.all()
+    curr_date = date.today()
+    weekday = curr_date.strftime('%A')
+    my_customers = []
+    if request.method == "POST":
+        for customer in all_customers:
+            if customer.zip_code == logged_in_employee.zipcode and customer.pickup_day == weekday and customer.suspension_start == False or customer.onetime_pickup == weekday:
+                my_customers.append(customer)
+    return render(request, 'employees/filter.html')
+
+
+def confirm_pickup(request, customer_id):
+    if request.method == "POST":
+        Customer = apps.get_model('customers.Customer')
+        customer = Customer.objects.get(id=customer_id)
+        customer.balance += 5
+        customer.save()
+        return HttpResponseRedirect(reverse('employees:index'))
+    else:
+        return render(request, 'employees/filter.html')
+>>>>>>> 46ca6bb71856ac048275f7768f703162206944ab
