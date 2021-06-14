@@ -36,7 +36,10 @@
         </li>
         {% elif group.name == "Employees" %}
         <li class="nav-item">
-          <a class="nav-link" href="#">Daily View</a>
+          <a class="nav-link" href="{% url 'employees:index' %}">Daily View</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'employees:filter' %}">Filter</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
